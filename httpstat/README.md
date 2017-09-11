@@ -106,7 +106,7 @@ HTTP/2 200
 <details>
 <summary><strong><code>HTTPSTAT_DEBUG</code></strong></summary>
 
-Set to `true` to see debugging logs. Default is `false`
+Set to `true` to see debugging logs. Default is `true`
 </details>
 
 
