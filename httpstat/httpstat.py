@@ -172,7 +172,7 @@ def main():
     show_speed = 'true'in ENV_SHOW_SPEED.get('false').lower()
     save_body = 'true' in ENV_SAVE_BODY.get('true').lower()
     curl_bin = ENV_CURL_BIN.get('curl')
-    is_debug = 'true' in ENV_DEBUG.get('false').lower()
+    is_debug = 'true' in ENV_DEBUG.get('true').lower()
 
     # configure logging
     if is_debug:
