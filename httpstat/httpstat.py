@@ -269,10 +269,17 @@ def main():
     )
 
     # ip
+    #if show_ip:
+        #s = 'Connected to {}:{}'.format(
+            #cyan(d['remote_ip']), cyan(d['remote_port'])
+        #)
+        #print(s)
+        #print()
+
+    # ip
     if show_ip:
-        s = 'Connected to {}:{} from {}:{}'.format(
-            cyan(d['remote_ip']), cyan(d['remote_port']),
-            d['local_ip'], d['local_port'],
+        s = 'Connected to {}:{}'.format(
+            cyan(d['remote_ip']), cyan(d['remote_port'])
         )
         print(s)
         print()
