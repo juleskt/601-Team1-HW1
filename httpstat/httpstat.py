@@ -356,7 +356,12 @@ def main():
 
     # colorize template first line
     tpl_parts = template.split('\n')
-    tpl_parts[0] = grayscale[16](tpl_parts[0])
+    for x in range(1,21,4):
+        tpl_parts[x] = green(tpl_parts[x])
+    for x in range(3,21,4):
+        tpl_parts[x] = blue(tpl_parts[x])
+    for x in range(0,21,4):
+        tpl_parts[x] = bold(tpl_parts[x])
     template = '\n'.join(tpl_parts)
 
     def fmta(s):
