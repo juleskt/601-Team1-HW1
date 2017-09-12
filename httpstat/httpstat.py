@@ -191,7 +191,7 @@ def main():
     show_speed = 'true'in ENV_SHOW_SPEED.get('false').lower()
     save_body = 'true' in ENV_SAVE_BODY.get('true').lower()
     curl_bin = ENV_CURL_BIN.get('curl')
-    is_debug = 'true' in ENV_DEBUG.get('false').lower()
+    is_debug = 'true' in ENV_DEBUG.get('true').lower()
 
     # configure logging
     if is_debug:
@@ -288,10 +288,17 @@ def main():
     )
 
     # ip
+    #if show_ip:
+        #s = 'Connected to {}:{}'.format(
+            #cyan(d['remote_ip']), cyan(d['remote_port'])
+        #)
+        #print(s)
+        #print()
+
+    # ip
     if show_ip:
-        s = 'Connected to {}:{} from {}:{}'.format(
-            cyan(d['remote_ip']), cyan(d['remote_port']),
-            d['local_ip'], d['local_port'],
+        s = 'Connected to {}:{}'.format(
+            cyan(d['remote_ip']), cyan(d['remote_port'])
         )
         print(s)
         print()
