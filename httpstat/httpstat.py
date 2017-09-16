@@ -46,6 +46,7 @@ ENV_SHOW_SPEED = Env('{prefix}_SHOW_SPEED')
 ENV_SAVE_BODY = Env('{prefix}_SAVE_BODY')
 ENV_CURL_BIN = Env('{prefix}_CURL_BIN')
 ENV_DEBUG = Env('{prefix}_DEBUG')
+ENV_SHOW_WELCOME = Env('{prefix}_SHOW_WELCOME')
 
 # Here is where the templates for the output to the user are defined
 curl_format = """{
@@ -180,6 +181,7 @@ Environments:
   HTTPSTAT_CURL_BIN     Indicate the curl bin path to use. Default is `curl`
                         from current shell $PATH.
   HTTPSTAT_DEBUG        Set to `true` to see debugging logs. Default is `false`
+  HTTPSTAT_SHOW_WELCOME welcome from EC601A1 ZULIN,DENNIS,JULIAN TEAM
 """[1:-1]
     print(help)
 
@@ -198,7 +200,11 @@ def main():
     save_body = 'true' in ENV_SAVE_BODY.get('true').lower()
     curl_bin = ENV_CURL_BIN.get('curl')
     is_debug = 'true' in ENV_DEBUG.get('true').lower()
+    show_welcome = 'true' in ENV_SHOW_WELCOME.get('true').lower()
 
+    # show welcome
+    if show_welcome:
+            print("Welcome from EC601A1 ZULIN,DENNIS,JULIAN TEAM!!")
     # configure logging
     if is_debug:
         log_level = logging.DEBUG
@@ -213,6 +219,7 @@ def main():
         show_body=show_body,
         show_ip=show_ip,
         show_speed=show_speed,
+	show_welcome=show_welcome,
         save_body=save_body,
         curl_bin=curl_bin,
         is_debug=is_debug,
@@ -394,6 +401,7 @@ def main():
     if show_speed:
         print('speed_download: {:.1f} KiB/s, speed_upload: {:.1f} KiB/s'.format(
             d['speed_download'] / 1024, d['speed_upload'] / 1024))
+
 
 
 if __name__ == '__main__':
