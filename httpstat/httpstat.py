@@ -5,6 +5,8 @@
 # https://curl.haxx.se/libcurl/c/curl_easy_getinfo.html
 # https://curl.haxx.se/libcurl/c/easy_getinfo_options.html
 # http://blog.kenweiner.com/2014/11/http-request-timings-with-curl.html
+# Edited by Caesar Liu, Dennis Your, and Julian Trinh
+# EC601 HW1
 
 from __future__ import print_function
 
@@ -16,7 +18,7 @@ import tempfile
 import subprocess
 
 
-__version__ = '1.2.1'
+__version__ = '1.2.2'
 
 
 PY3 = sys.version_info >= (3,)
@@ -45,7 +47,7 @@ ENV_SAVE_BODY = Env('{prefix}_SAVE_BODY')
 ENV_CURL_BIN = Env('{prefix}_CURL_BIN')
 ENV_DEBUG = Env('{prefix}_DEBUG')
 
-
+# Here is where the templates for the output to the user are defined
 curl_format = """{
 "time_namelookup": %{time_namelookup},
 "time_connect": %{time_connect},
@@ -65,23 +67,23 @@ curl_format = """{
 https_template = """
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [   DNS Lookup            ]
-|   {a0000}               |
+| {a0000}                 |
 |   namelookup:{b0000}    |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [   TCP Connection        ]
-|   {a0001}               |
+|  {a0001}                |
 |   connect:{b0001}       |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [   TLS Handshake         ]
-|   {a0002}               |
+|  {a0002}                |
 |   pretransfer:{b0002}   |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [   Server Processing     ]
-|   {a0003}               |
+|  {a0003}                |
 |   starttransfer:{b0003} |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[  Content Transfer       ]
-|   {a0004}               |
+[   Content Transfer      ]
+| {a0004}                 |
 |   total:{b0004}         |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """[1:]
@@ -101,19 +103,19 @@ https_template = """
 http_template = """
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [   DNS Lookup            ]
-|   {a0000}               |
+| {a0000}                 |
 |   namelookup:{b0000}    |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [   TCP Connection        ]
-|   {a0001}               |
+| {a0001}                 |
 |   connect:{b0001}       |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [   Server Processing     ]
-|   {a0003}               |
+| {a0003}                 |
 |   starttransfer:{b0003} |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[  Content Transfer       ]
-|   {a0004}               |
+[   Content Transfer      ]
+| {a0004}                 |
 |   total:{b0004}         |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """[1:]
@@ -121,7 +123,7 @@ http_template = """
 # Color code is copied from https://github.com/reorx/python-terminal-color/blob/master/color_simple.py
 ISATTY = sys.stdout.isatty()
 
-
+# Creates a new format/font color for the commandline
 def make_color(code):
     def color_func(s):
         if not ISATTY:
@@ -130,7 +132,7 @@ def make_color(code):
         return tpl.format(code, s)
     return color_func
 
-
+# Define new text colors
 red = make_color(31)
 green = make_color(32)
 yellow = make_color(33)
@@ -143,13 +145,13 @@ underline = make_color(4)
 
 grayscale = {(i - 232): make_color('38;5;' + str(i)) for i in xrange(232, 256)}
 
-
+# Exits the program
 def quit(s, code=0):
     if s is not None:
         print(s)
     sys.exit(code)
 
-
+# Returns the list of all commands that can be paired with the httpstat command
 def print_help():
     help = """
 Usage: httpstat URL [CURL_OPTIONS]
@@ -181,7 +183,8 @@ Environments:
 """[1:-1]
     print(help)
 
-
+# Main program, splits the user input and passes it into a curl command to be later
+# reformatted using the templates to make the curl output easier to read
 def main():
     args = sys.argv[1:]
     if not args:
