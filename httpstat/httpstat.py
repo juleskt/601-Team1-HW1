@@ -204,7 +204,7 @@ def main():
 
     # show welcome
     if show_welcome:
-            print("Welcome from EC601A1 ZULIN,DENNIS,JULIAN TEAM!!")
+            print(red("Welcome from EC601A1 ZULIN,DENNIS,JULIAN TEAM!!"))
     # configure logging
     if is_debug:
         log_level = logging.DEBUG
