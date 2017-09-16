@@ -63,38 +63,60 @@ curl_format = """{
 }"""
 
 https_template = """
-{   DNS Lookup            }
-|   {a0000}               |
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[   DNS Lookup            ]
+| {a0000}                 |
 |   namelookup:{b0000}    |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{   TCP Connection        }
-|   {a0001}               |
+[   TCP Connection        ]
+|  {a0001}                |
 |   connect:{b0001}       |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{   TLS Handshake         }
-|   {a0002}               |
+[   TLS Handshake         ]
+|  {a0002}                |
 |   pretransfer:{b0002}   |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{   Server Processing     }
-|   {a0003}               |
+[   Server Processing     ]
+|  {a0003}                |
 |   starttransfer:{b0003} |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{  Content Transfer       }
-|   {a0004}               |
+[   Content Transfer      ]
+| {a0004}                 |
 |   total:{b0004}         |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """[1:]
 
-http_template = """
-  DNS Lookup   TCP Connection   Server Processing   Content Transfer
-[   {a0000}  |     {a0001}    |      {a0003}      |      {a0004}     ]
-             |                |                   |                  |
-    namelookup:{b0000}        |                   |                  |
-                        connect:{b0001}           |                  |
-                                      starttransfer:{b0003}          |
-                                                                 total:{b0004}
-"""[1:]
+# https_template = """
+#   DNS Lookup   TCP Connection   TLS Handshake   Server Processing   Content Transfer
+# [   {a0000}  |     {a0001}    |    {a0002}    |      {a0003}      |      {a0004}     ]
+#              |                |               |                   |                  |
+#     namelookup:{b0000}        |               |                   |                  |
+#                         connect:{b0001}       |                   |                  |
+#                                     pretransfer:{b0002}           |                  |
+#                                                       starttransfer:{b0003}          |
+#                                                                                  total:{b0004}
+# """[1:]
 
+
+http_template = """
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[   DNS Lookup            ]
+| {a0000}                 |
+|   namelookup:{b0000}    |
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[   TCP Connection        ]
+| {a0001}                 |
+|   connect:{b0001}       |
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[   Server Processing     ]
+| {a0003}                 |
+|   starttransfer:{b0003} |
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[   Content Transfer      ]
+| {a0004}                 |
+|   total:{b0004}         |
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"""[1:]
 
 # Color code is copied from https://github.com/reorx/python-terminal-color/blob/master/color_simple.py
 ISATTY = sys.stdout.isatty()
@@ -334,7 +356,12 @@ def main():
 
     # colorize template first line
     tpl_parts = template.split('\n')
-    tpl_parts[0] = grayscale[16](tpl_parts[0])
+    for x in range(1,21,4):
+        tpl_parts[x] = green(tpl_parts[x])
+    for x in range(3,21,4):
+        tpl_parts[x] = blue(tpl_parts[x])
+    for x in range(0,21,4):
+        tpl_parts[x] = bold(tpl_parts[x])
     template = '\n'.join(tpl_parts)
 
     def fmta(s):
