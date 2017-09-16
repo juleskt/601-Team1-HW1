@@ -65,23 +65,23 @@ curl_format = """{
 https_template = """
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [   DNS Lookup            ]
-|   {a0000}               |
+| {a0000}                 |
 |   namelookup:{b0000}    |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [   TCP Connection        ]
-|   {a0001}               |
+|  {a0001}                |
 |   connect:{b0001}       |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [   TLS Handshake         ]
-|   {a0002}               |
+|  {a0002}                |
 |   pretransfer:{b0002}   |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [   Server Processing     ]
-|   {a0003}               |
+|  {a0003}                |
 |   starttransfer:{b0003} |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[  Content Transfer       ]
-|   {a0004}               |
+[   Content Transfer      ]
+| {a0004}                 |
 |   total:{b0004}         |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """[1:]
@@ -101,19 +101,19 @@ https_template = """
 http_template = """
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [   DNS Lookup            ]
-|   {a0000}               |
+| {a0000}                 |
 |   namelookup:{b0000}    |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [   TCP Connection        ]
-|   {a0001}               |
+| {a0001}                 |
 |   connect:{b0001}       |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [   Server Processing     ]
-|   {a0003}               |
+| {a0003}                 |
 |   starttransfer:{b0003} |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[  Content Transfer       ]
-|   {a0004}               |
+[   Content Transfer      ]
+| {a0004}                 |
 |   total:{b0004}         |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """[1:]
