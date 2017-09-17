@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # coding=utf-8
+# unpackages httpstat to be used in the command
+# line as the command 'httpstat' instead of running
+# python httpstat.py
 
 from setuptools import setup
 

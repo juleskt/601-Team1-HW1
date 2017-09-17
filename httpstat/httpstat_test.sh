@@ -1,4 +1,6 @@
 #!/bin/bash
+# tests the functionality of httpstat using a shell script
+# if it it is up, then responds with OK
 
 function assert_exit() {
     rc=$?
