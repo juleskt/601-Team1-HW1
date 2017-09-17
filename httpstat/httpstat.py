@@ -364,13 +364,17 @@ def main():
     else:
         template = http_template
 
-    # colorize template first line
+    # colorize template
     tpl_parts = template.split('\n')
-    for x in range(1,21,4):
+    if url.startswith('https://'):
+        templatelines = 21
+    else:
+        templatelines = 17
+    for x in range(1,templatelines,4):
         tpl_parts[x] = green(tpl_parts[x])
-    for x in range(3,21,4):
+    for x in range(3,templatelines,4):
         tpl_parts[x] = blue(tpl_parts[x])
-    for x in range(0,21,4):
+    for x in range(0,templatelines,4):
         tpl_parts[x] = bold(tpl_parts[x])
     template = '\n'.join(tpl_parts)
 
