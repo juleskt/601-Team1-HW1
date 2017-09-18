@@ -2,7 +2,8 @@
 
 Please note this is a modified version of httpstat for EC601.
 
-![screenshot](screenshot.png)
+![screenshot](screenshot1.png)
+![screenshot](screenshot2.png)
 
 httpstat visualizes `curl(1)` statistics in a way of beauty and clarity.
 
