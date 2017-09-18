@@ -1,5 +1,7 @@
 # httpstat
 
+Please note this is a modified version of httpstat for EC601.
+
 ![screenshot](screenshot.png)
 
 httpstat visualizes `curl(1)` statistics in a way of beauty and clarity.
@@ -9,7 +11,10 @@ It is a **single file🌟** Python script that has **no dependency👏** and is 
 
 ## Installation
 
-There are three ways to get `httpstat`:
+If you want to download our httpstat, download the code from this github.
+If you want to have a commandline version of it, please run setup.py.
+
+There are three ways to get the original `httpstat`:
 
 - Download the script directly: `wget https://raw.githubusercontent.com/reorx/httpstat/master/httpstat.py`
 
